@@ -8,7 +8,9 @@
 
 int main(int argc, char* argv[]) {
     Gui gui;
-    gui.init();
+    if (!gui.init()) {
+        return 1;
+    }
 
     VBox* root = (VBox*)Factory::create(WTYPE_VBOX);
     root->resize(320, 240);
@@ -21,8 +23,9 @@ int main(int argc, char* argv[]) {
     btn2->setLabel(std::string("Button 2"));
     root->addChild(btn2);
 
-    Theme defaultTheme;
-    root->accept(defaultTheme);
+    gui.setRoot(root);
+    gui.run();
+    gui.destroy();
 
     return 0;
 }
