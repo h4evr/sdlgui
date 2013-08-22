@@ -24,6 +24,7 @@ class Widget {
         ~Widget();
         int getX();
         int getY();
+        int getZ();
         int getWidth();
         int getHeight();
         virtual void move(int x, int y);

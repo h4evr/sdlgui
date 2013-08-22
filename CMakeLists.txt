@@ -20,17 +20,26 @@ set (SOURCES
 Find_Package(SDL REQUIRED)
 Find_Package(SDL_image REQUIRED)
 Find_Package(OpenGL REQUIRED)
+Find_Package(Freetype REQUIRED)
+Include(./FindFTGL.cmake)
 
 if(NOT SDL_FOUND)
     message (FATAL_ERROR "SDL not found!")
 endif(NOT SDL_FOUND)
 
-include_directories(${PROJECT_BINARY_DIR})
-include_directories(${SDL_INCLUDE_DIR})
-include_directories(${OPENGL_INCLUDE_DIR})
+include_directories(${PROJECT_BINARY_DIR}
+                    ${FREETYPE_INCLUDE_DIRS}
+                    ${SDL_INCLUDE_DIR}
+                    ${OPENGL_INCLUDE_DIR}
+                    ${FTGL_INCLUDE_DIR})
 
 add_library(gui ${SOURCES})
-target_link_libraries(gui ${SDL_LIBRARY} ${SDLIMAGE_LIBRARY}
-    ${OPENGL_LIBRARIES} SDLmain)
+target_link_libraries(gui 
+    ${SDL_LIBRARY} 
+    ${SDLIMAGE_LIBRARY}
+    ${OPENGL_LIBRARIES} 
+    ${FREETYPE_LIBRARIES}
+    ${FTGL_LIBRARY}
+    SDLmain)
 add_executable(sdlgui WIN32 MACOSX_BUNDLE main.cpp)
 target_link_libraries(sdlgui gui)

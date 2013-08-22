@@ -13,12 +13,17 @@ class Gui {
         void run();
         void destroy();
         Theme& getTheme();
+
     private:
         bool initOpenGl(int w, int h);
         void draw();
+        bool onResize(int w, int h);
 
         Widget* root;
         Theme defaultTheme;
+
+        int window_w;
+        int window_h;
 };
 
 #endif

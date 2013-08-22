@@ -4,6 +4,7 @@
 Widget::Widget() {
     this->x = 0;
     this->y = 0;
+    this->z_index = 0;
     this->width = 1;
     this->height = 1;
 }
@@ -22,6 +23,10 @@ int Widget::getX() {
 
 int Widget::getY() {
     return this->y;
+}
+
+int Widget::getZ() {
+    return this->z_index;
 }
 
 int Widget::getWidth() {
